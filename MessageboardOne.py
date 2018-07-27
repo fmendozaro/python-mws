@@ -6,6 +6,8 @@ class MessageHandler(BaseHTTPRequestHandler):
         length = int(self.headers.get('Content-length', 0))
         data = self.rfile.read(length).decode()
         message = parse_qs(data)["message"][0]
+        print('data: ' + data)
+        print('message: ' + message)
         self.send_response(200)
         self.send_header('Content-type', 'text/plain; charset=utf-8')
         self.end_headers()
