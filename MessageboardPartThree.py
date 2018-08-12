@@ -21,7 +21,7 @@ class MessageHandler(BaseHTTPRequestHandler):
         # Read / Parse the message
         length = int(self.headers.get('Content-length', 0))
         data = self.rfile.read(length).decode()
-        message = parse_qs(data['message'][0]).replace("<", "&lt;")
+        message = parse_qs(data)['message'][0].replace("<", "&lt;")
 
         # Store it in memory.
         memory.append(message)
